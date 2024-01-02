@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { remove } from '../store/cartSlice';
+import OrderDetails from './OrderDetails';
 
 function Cart() {
 
@@ -35,14 +36,19 @@ function Cart() {
 
         </div>
     ))
+
+
+    
   return (
     <>
-    <h2>My Cart</h2>
-    <div className='row'>
-
+    <div className='container'>
+    <h2 className='mb-3'>My Cart - Order Summary</h2>
+    <OrderDetails items={products}/>
+    <div className='row mt-5'>
         {cards}
-
     </div>
+    </div>
+
     </>
   )
 }
