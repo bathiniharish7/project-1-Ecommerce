@@ -58,9 +58,11 @@ function Product() {
   return (
     <>
      <h1>Product DashBoard</h1>
-        <div className='row justify-content-center'>
+      <div className='container'>
+      <div className='row pb-5'>
             {cards}
         </div>
+      </div>
     </>
   )
 }

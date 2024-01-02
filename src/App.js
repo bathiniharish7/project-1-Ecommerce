@@ -6,6 +6,7 @@ import Product from './components/Product';
 import Dashboard from './components/Dashboard';
 import Cart from './components/Cart';
 import RootLayout from './components/RootLayout';
+import NavbarPanel from './components/NavbarPanel';
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="App">
      <RouterProvider router={router}/>
+     
     </div>
   );
 }
