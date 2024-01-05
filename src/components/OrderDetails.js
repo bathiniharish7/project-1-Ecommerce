@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 
 function OrderDetails({items}) {
-    let count = 1;
+    const[counter,setCounter] =useState(0);
+    useEffect(()=>{
+      console.log("UseEffect Triggered");
+      console.log(items);
+      setCounter(counter+1);
+    },[items])
+    
     const total=items.reduce((acc,current)=>{
         acc = acc + current.price;
         return acc;
@@ -19,11 +25,11 @@ function OrderDetails({items}) {
     </thead>
     <tbody>
        {
-       items.map(item => (
+       items.map((item,index) => (
 
         
-          <tr key={item.id}>
-            <td>{count++}</td>
+          <tr key={index}>
+            <td>{index+1}</td>
             <td>{item.title}</td>
             <td>{item.price}</td>
           </tr>

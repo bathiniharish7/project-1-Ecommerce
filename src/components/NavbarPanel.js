@@ -8,7 +8,7 @@ function NavbarPanel() {
     const cartProduct = useSelector((state)=>state.cart)
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-    <Container>
+    <Container className=''>
       <Navbar.Brand href="/">Redux - Toolkit</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link to='/' as={Link}>All Products</Nav.Link>
