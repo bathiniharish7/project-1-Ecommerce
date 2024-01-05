@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 
 function OrderDetails({items}) {
+  //This counter variable is created to update its state and re- render whenever the {items} props is changed
+  // so we use Effect to check whether {items} is changed or not
+
     const[counter,setCounter] =useState(0);
     useEffect(()=>{
-      console.log("UseEffect Triggered");
-      console.log(items);
+     
       setCounter(counter+1);
     },[items])
     

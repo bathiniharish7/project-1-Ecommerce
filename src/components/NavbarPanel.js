@@ -16,7 +16,7 @@ function NavbarPanel() {
         <Navbar.Toggle/>
         <Navbar.Collapse className='justify-content-end'>
             <Navbar.Text>
-            <Nav.Link to='/cart' as={Link}>MY Bag {cartProduct.length}</Nav.Link>
+            <Nav.Link to='/cart' as={Link}>My Cart {cartProduct.length}</Nav.Link>
             </Navbar.Text>
         </Navbar.Collapse>
 
