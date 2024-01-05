@@ -35,7 +35,7 @@ function Product() {
     }
 
     const cards = products.map((product)=>(
-        <div className='col-md-3' style={{marginBottom:'10px'}}>
+        <div className='col-md-6 col-lg-4 col-xl-3' style={{marginBottom:'10px'}}>
     <Card className='pt-3 h-100' key={product.id} >
         <div className='text-center'>
         <Card.Img variant="top" src={product.image} style={{width:'100px',height:'130px'} } />
