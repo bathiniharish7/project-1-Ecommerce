@@ -8,15 +8,15 @@ function NavbarPanel() {
     const cartProduct = useSelector((state)=>state.cart)
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-    <Container>
-      <Navbar.Brand href="#home">Redux - Toolkit</Navbar.Brand>
+    <Container className=''>
+      <Navbar.Brand href="/">Redux - Toolkit</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link to='/' as={Link}>All Products</Nav.Link>
         </Nav>
         <Navbar.Toggle/>
         <Navbar.Collapse className='justify-content-end'>
             <Navbar.Text>
-            <Nav.Link to='/cart' as={Link}>MY Bag {cartProduct.length}</Nav.Link>
+            <Nav.Link to='/cart' as={Link}>My Cart {cartProduct.length}</Nav.Link>
             </Navbar.Text>
         </Navbar.Collapse>
 
