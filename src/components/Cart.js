@@ -16,6 +16,9 @@ function Cart() {
     <div className='container'>
     <h2 className='mb-3'>My Cart - Order Summary</h2>
     <OrderDetails items={products}/>
+    <button className='btn btn-warning text-dark w-100 ' style={{fontWeight:'600',border:'0.6px solid black'}}
+    onClick={()=>{alert("This Feature is under Development")}}
+    >ORDER NOW</button>
     <div className='row mt-5'>
         {cards}
     </div>
