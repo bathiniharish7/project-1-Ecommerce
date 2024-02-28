@@ -59,7 +59,7 @@ function Product() {
 
   return (
     <>
-     <h1>Product DashBoard</h1>
+     {/* <h1>Product DashBoard</h1> */}
       <div className='container'>
       <div className='row pb-5'>
             {cards}

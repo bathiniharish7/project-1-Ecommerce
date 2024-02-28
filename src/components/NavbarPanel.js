@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 function NavbarPanel() {
-    const cartProduct = useSelector((state)=>state.cart)
+    const cartProduct = useSelector((state)=>state.cart);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
     <Container className=''>
