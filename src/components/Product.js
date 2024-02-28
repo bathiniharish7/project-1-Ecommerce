@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
@@ -6,9 +6,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
 import { getProducts } from '../store/productSlice';
-
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 function Product() {
-
+    const[open,setOpen] = useState(false);
     const dispatch = useDispatch();
     const {data:products,status} = useSelector(state=>state.products)
 
@@ -34,6 +36,13 @@ function Product() {
         dispatch(add(product));
     }
 
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false); // Close message
+    };
     const cards = products.map((product,index)=>(
         <div className='col-md-6 col-lg-4 col-xl-3'  key={product.id} style={{marginBottom:'10px'}}>
     <Card className='pt-3 h-100'>
@@ -49,7 +58,28 @@ function Product() {
         
       </Card.Body>
       <Card.Footer style={{background:'white'}}>
-      <Button variant="primary" onClick={()=>addToCart(product)}>Add to Cart</Button>
+        <div>
+           <Button variant="contained" onClick={()=>{
+            addToCart(product);
+            setOpen(true);
+            
+           }}>Add to Cart</Button>
+            <Snackbar
+              open={open}
+              autoHideDuration={4000}
+              onClose={handleClose}
+             
+             
+            >
+              <Alert elevation={0} variant="filled" onClose={handleClose} severity="success">
+          Item added to cart!
+        </Alert>
+            </Snackbar>
+           
+        
+        </div>
+     
+      
       </Card.Footer>
     </Card>
 
@@ -59,7 +89,7 @@ function Product() {
 
   return (
     <>
-     <h1>Product DashBoard</h1>
+     {/* <h1>Product DashBoard</h1> */}
       <div className='container'>
       <div className='row pb-5'>
             {cards}
