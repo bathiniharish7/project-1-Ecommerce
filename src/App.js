@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 import NavbarPanel from './components/NavbarPanel';
 import PrimarySearchAppBar from './components/AppBar';
 import NavBar from './components/NavBar';
+import YourComponent from './components/Test';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
      <Routes>
         <Route path='/' element={<Product/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/test' element={<YourComponent/>}/>
+
       </Routes>
      </div>
      
