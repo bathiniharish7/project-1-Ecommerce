@@ -9,20 +9,28 @@ import { getProducts } from '../store/productSlice';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-function Product() {
+import "./Product.css"
+function Product({searchValue,setSearchValue}) {
     const[open,setOpen] = useState(false);
     const dispatch = useDispatch();
-    const {data:products,status} = useSelector(state=>state.products)
+    const {data:products,status} = useSelector(state=>state.products);
+    const [apiData,setApiData] = useState([]);
 
-    // const [products,getProducts] = useState([]);
-    useEffect(()=>{
-        //Dispacth an action for fetch products:
-        dispatch(getProducts())
-        // fetch('https://fakestoreapi.com/products')
-        //     .then(res=>res.json())
-        //     .then(json=>getProducts(json))
-
-    },[])
+    useEffect(() => { 
+      //clearing search
+      setSearchValue("")
+      // Dispatch an action for fetch products:
+      dispatch(getProducts())
+          .then((response) => {
+              // Set products data to apiData state
+              console.log("Data",response.payload);
+              setApiData(response.payload);
+          })
+          .catch((error) => {
+              console.error('Error fetching products:', error);
+          });
+  }, [dispatch]);
+  
     if(status === 'loading')
     {
         return <p>loading...</p>
@@ -43,7 +51,7 @@ function Product() {
   
       setOpen(false); // Close message
     };
-    const cards = products.map((product,index)=>(
+    const cards = apiData.map((product,index)=>(
         <div className='col-md-6 col-lg-4 col-xl-3'  key={product.id} style={{marginBottom:'10px'}}>
     <Card className='pt-3 h-100'>
         <div className='text-center'>
@@ -84,7 +92,49 @@ function Product() {
     </Card>
 
         </div>
-    ))
+    ));
+    const cards2 = apiData.filter((product,index)=>(product.title.toLowerCase()).includes(searchValue.toLowerCase())).map((product,index)=>(
+      <div className='col-md-6 col-lg-4 col-xl-3'  key={product.id} style={{marginBottom:'10px'}}>
+  <Card className='pt-3 h-100'>
+      <div className='text-center'>
+      <Card.Img variant="top" src={product.image} style={{width:'100px',height:'130px'} } />
+      </div>
+   
+    <Card.Body>
+      <Card.Title>{product.title}</Card.Title>
+      <Card.Text>
+       INR:{product.price}/-
+      </Card.Text>
+      
+    </Card.Body>
+    <Card.Footer style={{background:'white'}}>
+      <div>
+         <Button variant="contained" onClick={()=>{
+          addToCart(product);
+          setOpen(true);
+          
+         }}>Add to Cart</Button>
+          <Snackbar
+            open={open}
+            autoHideDuration={4000}
+            onClose={handleClose}
+           
+           
+          >
+            <Alert elevation={0} variant="filled" onClose={handleClose} severity="success">
+        Item added to cart!
+      </Alert>
+          </Snackbar>
+         
+      
+      </div>
+   
+    
+    </Card.Footer>
+  </Card>
+
+      </div>
+  ));;
 
 
   return (
@@ -92,7 +142,9 @@ function Product() {
      {/* <h1>Product DashBoard</h1> */}
       <div className='container'>
       <div className='row pb-5'>
-            {cards}
+            {/* {cards} */}
+            {searchValue===""?cards :(cards2.length>0?cards2:<div className='no-data'
+            >No Data</div>)}
         </div>
       </div>
     </>

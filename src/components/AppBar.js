@@ -19,7 +19,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
-
+import { useEffect} from 'react'
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -60,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({searchValue,setSearchValue}) {
   const cartProduct = useSelector((state)=>state.cart);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -68,6 +68,9 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+ 
+
+  
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -162,6 +165,13 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  const handleInput=(e)=>{
+    // console.log(e.target.value);
+
+    setSearchValue(e.target.value);
+
+  }
+
 
   return (
     <Box sx={{ flexGrow: 1 ,position:'sticky',top:'0',zIndex:5 }}>
@@ -194,6 +204,8 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              value={searchValue}
+              onChange={handleInput}
             />
           </Search>
           

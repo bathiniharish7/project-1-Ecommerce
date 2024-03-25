@@ -9,20 +9,22 @@ import NavbarPanel from './components/NavbarPanel';
 import PrimarySearchAppBar from './components/AppBar';
 import NavBar from './components/NavBar';
 import YourComponent from './components/Test';
+import { useState } from 'react';
 
 
 function App() {
+  const[searchValue,setSearchValue] = useState("");
 
   return ( 
    <div className="App">
   
-    <PrimarySearchAppBar/>
+    <PrimarySearchAppBar searchValue={searchValue} setSearchValue={setSearchValue} />
     {/* <NavBar/> */}
      {/* <NavbarPanel/> */}
      <div style={{marginTop:'20px'}}>
      <Routes>
-        <Route path='/' element={<Product/>}/>
-        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/' element={<Product searchValue={searchValue} setSearchValue={setSearchValue}/>}/>
+        <Route path='/cart' element={<Cart setSearchValue={setSearchValue}/>}/>
         <Route path='/test' element={<YourComponent/>}/>
 
       </Routes>

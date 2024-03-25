@@ -4,12 +4,17 @@ import { remove } from '../store/cartSlice';
 import OrderDetails from './OrderDetails';
 import CartCard from './CartCard';
 
-function Cart() {
+function Cart({setSearchValue}) {
 
     const products = useSelector(state=>state.cart);
     const cards = products.map((product,index)=>{
       return <CartCard product={product} index={index}/>
     })
+
+    useEffect(()=>{
+      setSearchValue("");
+
+    },[])
     
   return (
     <>
